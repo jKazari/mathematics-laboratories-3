@@ -3,3 +3,4 @@ Repository of solutions to my "Mathematical Software" (Mathematica, Matlab, R) l
 
 ## The laboratory outline
 1. Introduction to Mathematica
+2. Vectors and matrices
