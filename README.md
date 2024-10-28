@@ -7,3 +7,4 @@ Repository of solutions to my **Mathematical Software** (`Mathematica`, `MATLAB`
 1. Introduction to *Mathematica*
 2. Vectors and matrices
 3. Functions and conditional statements
+4. Plots
