@@ -13,3 +13,6 @@ Repository of solutions to my **Mathematical Software** (`Mathematica`, `MATLAB`
    - Derivatives
    - Integrals
    - Differential equations
+6. Exam (Mathematica)
+
+### MATLAB
