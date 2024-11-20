@@ -16,3 +16,4 @@ Repository of solutions to my **Mathematical Software** (`Mathematica`, `MATLAB`
 6. Exam (Mathematica)
 
 ### MATLAB
+7. Vectors and matrices
