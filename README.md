@@ -18,3 +18,4 @@ Repository of solutions to my **Mathematical Software** (`Mathematica`, `MATLAB`
 ### MATLAB
 7. Vectors and matrices
 8. Scripts, functions, conditional statements and loops
+9. Functions (continuation)
