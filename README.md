@@ -20,3 +20,4 @@ Repository of solutions to my **Mathematical Software** (`Mathematica`, `MATLAB`
 8. Scripts, functions, conditional statements and loops
 9. Functions (continuation)
 10. File handling (loading, writing, image handling)
+11. Plots
