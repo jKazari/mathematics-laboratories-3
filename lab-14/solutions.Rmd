@@ -1,0 +1,218 @@
+---
+title: "R Notebook"
+author: "Zachariasz Jażdżewski"
+output: html_notebook
+---
+
+# Zadanie 0
+
+-   Zapoznaj się z pomocą do funkcji `sin`
+-   Wykonać polecenie `?complex` i zapoznać się z odpowiednim tekstem pomocy
+-   Odkryć przeznaczenie funkcji: `factorial(x)`, `choose(a,b)`
+
+```{r}
+# ?sin
+# ?complex
+# ?factorial
+# ?choose
+```
+
+# Zadanie 1
+
+Zdefiniuj zmienną `kasyno` i przypisz do niej wartość `“wchodzę”`.
+
+```{r}
+kasyno <- "wchodzę"
+```
+
+# Zadanie 2
+
+Od tygodnia jesteś w kasynie. Twoje zwycięstwa i porażki przedstawiono
+poniżej.
+
+| Poker                         | Jednoręki Bandyta               |
+|-------------------------------|---------------------------------|
+| W poniedziałek wygrałeś \$100 | W poniedziałek przegrałeś \$110 |
+| We wtorek przegrałeś \$80     | We wtorek wygrałeś \$50         |
+| W środę wygrałeś \$20         | W środę wygrałeś \$40           |
+| W czwartek przegrałeś \$120   | W czwartek przegrałeś \$120     |
+| W piątek wygrałeś \$180       | W piątek przegrałeś \$100       |
+| W sobotę wygrałeś \$30        | W sobotę wygrałeś \$230         |
+| W niedzielę przegrałeś \$90   | W niedzielę przegrałeś \$70     |
+
+Stwórz zmienne `poker.wektor` oraz `bandyta.wektor` i przypisz do nich wartości wygranych
+(jako dodatnie) i przegranych (jako ujemne). Wyświetl oba wektory.
+
+```{r}
+poker.wektor <- c(100, -80, 20, -120, 180, 30, -90)
+bandyta.wektor <- c(-110, 50, 40, -120, -100, 230, -70)
+
+print(poker.wektor)
+print(bandyta.wektor)
+```
+
+# Zadanie 3
+
+Stwórz wektor `dni_tygodnia` zawierający nazwy kolejnych dni tygodnia. Następnie korzystając z niego nazwij elementy wektorów `poker.wektor` i `bandyta.wektor`. Wyświetl oba wektory.
+
+```{r}
+dni_tygodnia <- c("Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela")
+names(poker.wektor) <- dni_tygodnia
+names(bandyta.wektor) <- dni_tygodnia
+
+print(poker.wektor)
+print(bandyta.wektor)
+```
+
+# Zadanie 4
+
+**a.** Ile wygrałeś/przegrałeś każdego dnia łącznie w obu grach? Przypisz wynik do wektora
+`zysk_dzienny`.
+
+```{r}
+zysk_dzienny <- poker.wektor + bandyta.wektor
+print(zysk_dzienny)
+```
+
+**b.** Ile wyniosła całkowita wygrana/przegrana w poprzednim tygodniu? Wyniki zapisz do
+zmiennych `suma_poker`, `suma_bandyta`, `suma_tygodniowa`. Skorzystaj z funkcji `sum()`.
+
+```{r}
+suma_poker <- sum(poker.wektor)
+suma_bandyta <- sum(bandyta.wektor)
+suma_tygodniowa <- suma_poker + suma_bandyta
+
+print(suma_poker)
+print(suma_bandyta)
+print(suma_tygodniowa)
+```
+
+**c.** Sprawdź, czy suma Twoich wygranych w pokera była większa niż suma wygranych w
+jednorękiego bandytę.
+
+```{r}
+print(suma_poker > suma_bandyta)
+```
+
+# Zadanie 5
+
+Z wektora `poker.wektor` wybierz obserwacje
+**a.** Ze środy, czwartku i piątku i zapisz je do wektora `srodkowe_poker`
+**b.** Z poniedziałku, wtorku i środy i zapisz je do wektora `poczatkowe_poker`
+**c.** Z piątku, soboty i niedzieli i zapisz je do wektora `koncowe_poker`
+
+```{r}
+srodkowe_poker <- poker.wektor[3:5]
+poczatkowe_poker <- poker.wektor[1:3]
+koncowe_poker <- poker.wektor[5:7]
+
+print(srodkowe_poker)
+print(poczatkowe_poker)
+print(koncowe_poker)
+```
+
+# Zadanie 6
+
+Oblicz sumy i średnie wektorów z zadania 5 i przypisz je do zmiennych `suma_poker_poczatek`, `sumapoker_srodek`, `suma_poker_koniec`, `srednia_poker_poczatek`, `srednia_poker_srodek`, `srednia_poker_koniec`.
+
+```{r}
+suma_poker_poczatek <- sum(poczatkowe_poker)
+suma_poker_srodek <- sum(srodkowe_poker)
+suma_poker_koniec <- sum(koncowe_poker)
+
+srednia_poker_poczatek <- mean(poczatkowe_poker)
+srednia_poker_srodek <- mean(srodkowe_poker)
+srednia_poker_koniec <- mean(koncowe_poker)
+
+print(suma_poker_poczatek)
+print(suma_poker_srodek)
+print(suma_poker_koniec)
+print(srednia_poker_poczatek)
+print(srednia_poker_srodek)
+print(srednia_poker_koniec)
+```
+
+# Zadanie 7
+
+Sprawdź, które z elementów wektorów `poker.wektor`, `bandyta.wektor` są dodatnie. Wyniki tego sprawdzenia zapisz do wektorów o wartościach logicznych `czy_wygrana_poker`, `czy_wygrana_bandyta` i wyświetl te wektory. Stwórz wektory `wygrane_poker`, `wygrane_bandyta` które zawierają tylko wartości dodatnie.
+
+```{r}
+czy_wygrana_poker <- poker.wektor > 0
+czy_wygrana_bandyta <- bandyta.wektor > 0
+
+print(czy_wygrana_poker)
+print(czy_wygrana_bandyta)
+
+wygrane_poker <- poker.wektor[czy_wygrana_poker]
+wygrane_bandyta <- bandyta.wektor[czy_wygrana_bandyta]
+
+print(wygrane_poker)
+print(wygrane_bandyta)
+```
+
+# Zadanie 8
+
+Korzystając z funkcji `rep()` utwórz wektory:
+
+-   `x` - ciąg liczb: `1,2,3` powtórzony `26` razy
+
+-   `y` - ciąg liczb: `1,1,2,2,3,3` powtórzony `13` razy
+
+-   `z` - ciąg liczb: `1,1,2,2,2,3,3,3,3,3,4,4` o długości `100`
+
+```{r}
+x <- rep(1:3, times = 26)
+y <- rep(c(1,1,2,2,3,3), times = 13)
+z <- rep(c(1,1,2,2,2,3,3,3,3,3,4,4), length.out = 100)
+
+print(x)
+print(y)
+print(z)
+```
+
+# Zadanie 9
+
+Utwórz macierze:
+
+-   `M1` - jednostkową `4x4`
+
+-   `M2` - diagonalną o wyrazach: `5,44,3,22,1` na diagonali
+
+-   `M3` - której pierwszy wiersz stanowi wektor `poczatkowe_poker`, drugi `srodkowe_poker`, a trzeci `koncowe_poker`.
+
+-   `M4` - której pierwszą kolumnę stanowi wektor `poker.wektor`, a drugą `bandyta.wektor`
+
+```{r}
+M1 <- diag(1, 4)
+M2 <- diag(c(5, 44, 3, 22, 1))
+M3 <- rbind(poczatkowe_poker, srodkowe_poker, koncowe_poker)
+M4 <- cbind(poker.wektor, bandyta.wektor)
+
+print(M1)
+print(M2)
+print(M3)
+print(M4)
+```
+
+Znajdź: długość, element najmniejszy, element największy, wartość średnią i sumę
+elementów dla tych macierzy. Wykonać `summary(M4)`. Jak działa funkcja summary?
+
+```{r}
+matrices <- list(M1, M2, M3, M4)
+matrix_names <- c("M1", "M2", "M3", "M4")
+
+for (i in 1:length(matrices)) {
+  cat("For", matrix_names[i], ":\n")
+  mat <- matrices[[i]]
+  
+  cat("Length: ", length(mat), "\n")
+  cat("Min: ", min(mat), "\n")
+  cat("Max: ", max(mat), "\n")
+  cat("Mean: ", mean(mat), "\n")
+  cat("Sum: ", sum(mat), "\n")
+  
+  cat("\n")
+}
+
+summary(M4)
+```
