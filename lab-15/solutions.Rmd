@@ -1,0 +1,110 @@
+---
+title: "R Notebook"
+author: "Zachariasz Jażdżewski"
+output: html_notebook
+---
+
+# Zadanie 1
+
+Stworzyć zbiór danych `naukowcy` składający się z wektorów:
+
+```{r}
+nazwisko <- c("Feynman", "Kosterlitz", "Haldane", "Thompson", "Hardy", "Smale")
+zawod <- c("fizyk", "fizyk", "fizyk", "matematyk", "matematyk", "matematyk")
+rok_urodzenia <- c(1918, 1943, 1951, 1932, 1877, 1930)
+nobel <- c(TRUE, TRUE, TRUE, FALSE, FALSE, FALSE)
+
+naukowcy <- data.frame(nazwisko, zawod, rok_urodzenia, nobel)
+```
+
+1.  Używając funkcji `str` sprawdzić strukturę zbioru naukowcy.
+
+```{r}
+str(naukowcy)
+```
+
+2.  Wyświetlić wszystkie dane o Kosterlitzu
+
+```{r}
+print(naukowcy[naukowcy$nazwisko == "Kosterlitz", ])
+```
+
+3.  Jaki zawód wykonuje Smale?
+
+```{r}
+print(naukowcy[naukowcy$nazwisko == "Smale", "zawod"])
+```
+
+4.  Wyświetlić naukowców, którzy urodzili się po roku 1939
+
+```{r}
+print(naukowcy[naukowcy$rok_urodzenia > 1939, ])
+```
+
+5.  Wyświetlić tylko naukowców, którzy otrzymali nagrodę Nobla
+
+```{r}
+print(naukowcy[naukowcy$nobel == TRUE, ])
+```
+
+6.  Posortować naukowców względem kolumny `rok_urodzenia`
+
+```{r}
+naukowcy_posortowani = naukowcy[order(naukowcy$rok_urodzenia), ]
+print(naukowcy_posortowani)
+```
+
+7.  Zapisać rezultat do pliku `naukowcy.csv`
+
+```{r}
+write.csv(naukowcy_posortowani, "naukowcy.csv", row.names = FALSE)
+```
+
+# Zadanie 2
+
+1.  Zapoznać się z funkcjami `pbirthday` i `qbirthday`, a następnie obliczyć prawdopodobieństwo, że dokładnie 2 spośród 30 osób urodziło się tego samego dnia.
+
+```{r}
+print(pbirthday(30, classes = 365, coincident = 2))
+```
+
+2.  Napisać skrypt, który prosi użytkownika o podanie liczby osób. Jeśli liczba podana przez użytkownika jest dodatnia, to oblicza i wyświetla na ekranie prawdopodobieństwo, że dokładnie 2 spośród tych osób urodziły się tego samego dnia.
+
+```{r}
+liczba_osob <- as.integer(readline(prompt = "Podaj liczbę osób: "))
+
+if (liczba_osob <= 0) {
+  cat("Liczba osób musi być dodatnia\n")
+} else {
+  p <- pbirthday(liczba_osob, classes = 365, coincident = 2)
+  cat("Prawdopodobieństwo, że dokładnie 2 osoby spośród", liczba_osob, "mają urodziny tego samego dnia wynosi:", p, "\n")
+}
+```
+
+3.  Napisać funkcję `prawdopodobienstwa(nmin=1,nmax=366,k=2,filename=‘file.txt’)`, o domyślnych wartościach argumentów `nmin=1`, `nmax=366`, `k=2`, która:
+    -   Dla wszystkich `n = nmin, ..., nmax` oblicza prawdopodobieństwo `p`, że dokładnie `k` spośród `n` osób urodziło się tego samego dnia
+    -   Otrzymane wyniki umieszcza w tablicy
+    -   Zapisuje tą tablicę do pliku podanego jako ostatni argument `filename`
+
+```{r}
+prawdopodobienstwa <- function(nmin = 1, nmax = 366, k = 2, filename = 'output.txt') {
+  wyniki <- data.frame(n = integer(0), prawdopodobienstwo = numeric(0))
+  
+  for (n in nmin:nmax) {
+    p <- pbirthday(n, classes = 366, coincident = k)
+    wyniki <- rbind(wyniki, data.frame(n = n, prawdopodobienstwo = p))
+  }
+  
+  write.table(wyniki, file = filename, row.names = FALSE, col.names = TRUE, sep = "\t")
+}
+```
+
+4.  Wywołać tę funkcję dwukrotnie: z argumentami domyślnymi oraz z własnymi
+
+```{r}
+# Wywołanie funkcji z domyślnymi argumentami
+prawdopodobienstwa()
+
+# Wywołanie funkcji z własnymi argumentami
+prawdopodobienstwa(nmin = 1, nmax = 10, k = 2, filename = 'custom.txt')
+```
