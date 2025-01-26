@@ -21,3 +21,8 @@ Repository of solutions to my **Mathematical Software** (`Mathematica`, `MATLAB`
 9. Functions (continuation)
 10. File handling (loading, writing, image handling)
 11. Plots
+12. Symbolic computation
+13. Exam (MATLAB)
+
+### R
+14. Operators, elementary functions, vectors and matrices
