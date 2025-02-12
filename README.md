@@ -26,3 +26,4 @@ Repository of solutions to my **Mathematical Software** (`Mathematica`, `MATLAB`
 
 ### R
 14. Operators, elementary functions, vectors and matrices
+15. Dataframes, conditionals, loops, functions 
